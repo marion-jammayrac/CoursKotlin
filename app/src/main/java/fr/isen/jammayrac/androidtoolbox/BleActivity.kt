@@ -12,11 +12,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_ble.*
-import kotlinx.android.synthetic.main.activity_home.*
 
 class BleActivity : AppCompatActivity() {
 
     private lateinit var handler: Handler
+    private lateinit var adapter: BleActivity2
     private val deviceList = mutableListOf<Device>()
 
     private val bluetoothAdapter: BluetoothAdapter? by lazy(LazyThreadSafetyMode.NONE) {
@@ -27,12 +27,14 @@ class BleActivity : AppCompatActivity() {
     private val isBLEEnabled: Boolean
         get() = bluetoothAdapter?.isEnabled == true
 
-   // private val REQUEST_ENABLE_BT = 1
+    // private val REQUEST_ENABLE_BT = 1
     private var mScanning: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ble)
+        bleTextFailed.visibility = View.GONE
+
         PlayButton.setOnClickListener {
             when {
                 isBLEEnabled ->
@@ -49,17 +51,23 @@ class BleActivity : AppCompatActivity() {
                     bleTextFailed.visibility = View.VISIBLE
                 }
             }
-            recyclerViewBle.adapter = BleActivity2(deviceList)
+            recyclerViewBle.adapter = BleActivity2(deviceList, ::onDeviceClicked)
             recyclerViewBle.layoutManager = LinearLayoutManager(this)
 
         }
     }
 
     private fun initScan() {
+        adapter = BleActivity2(
+            arrayListOf(),
+            ::onDeviceClicked
+        )
+        recyclerViewBle.adapter = adapter
+
         progressBar.visibility = View.VISIBLE
         dividerBle.visibility = View.GONE
         handler = Handler()
-            scanLeDevice(true)
+        scanLeDevice(true)
     }
 
     private fun scanLeDevice(enable: Boolean) {
@@ -85,15 +93,14 @@ class BleActivity : AppCompatActivity() {
             Log.w("BleActivity", "${result.device}")
             deviceList += Device(result.device.name, result.device.address, result.rssi)
             runOnUiThread {
-                 dividerBle.visibility = View.GONE
+                dividerBle.visibility = View.GONE
             }
         }
     }
 
-    private fun addDeviceToList(result: ScanResult){
-        for (i in 0 until deviceList.size){
+    private fun addDeviceToList(result: ScanResult) {
+        for (i in 0 until deviceList.size) {
             if (result.device.address == deviceList[i].address) {
-
             } else {
                 deviceList += Device(result.device.name, result.device.address, result.rssi)
             }
@@ -114,8 +121,15 @@ class BleActivity : AppCompatActivity() {
     }
 
     data class Device(
-        val name: String,
+        val name: String?,
         val address: String,
         val rssi: Int
     )
+
+    private fun onDeviceClicked(device: BluetoothDevice) {
+        val intent = Intent(this, BleActivity3::class.java)
+        intent.putExtra("ble_device", device)
+        startActivity(intent)
+    }
+
 }
