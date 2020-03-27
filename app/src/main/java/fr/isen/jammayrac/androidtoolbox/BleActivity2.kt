@@ -7,8 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_ble2.view.*
+import kotlin.reflect.KFunction1
 
-class BleActivity2 (private val list: List<BleActivity.Device>) : //private val deviceClickListener: (BluetoothDevice) -> Unit) :
+class BleActivity2(
+    private val list: List<BleActivity.Device>,
+    kFunction1: KFunction1<@ParameterName(name = "device") BluetoothDevice, Unit>
+) : //private val deviceClickListener: (BluetoothDevice) -> Unit) :
     RecyclerView.Adapter<BleActivity2.BluetoothViewHolder>() {
 
 
