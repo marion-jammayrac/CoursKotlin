@@ -73,6 +73,7 @@ class BleActivity : AppCompatActivity() {
     }
 
 
+
     private fun initScan() {
         progressBar.visibility = View.VISIBLE
         dividerBle.visibility = View.GONE

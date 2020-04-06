@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="characteristicName" type="id" />
+    <item name="characteristicUUID" type="id" />
+    <item name="properties" type="id" />
+    <item name="writeButton" type="id" />
+    <item name="characteristicValue" type="id" />
+</resources>

@@ -47,4 +47,14 @@
     <string name="TexteduMenu">Menu de Mario</string>
     <string name="BleTxt">Lancer Scan Ble</string>
     <string name="BleTextFailed">Erreur</string>
+    <string name="bluetooth_button">bluetooth_button</string>
+    <string name="lancer_le_scan_ble">Lancer le scan BLE</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="telephone_non_compatible_avec_le_ble">TELEPHONE NON COMPATIBLE AVEC LE BLE</string>
+    <string name="red">red</string>
+    <string name="textview">TextView</string>
+    <string name="example">example</string>
+    <string name="_lecture" />
+    <string name="ecrire" />
+    <string name="notifier" />
 </resources>
