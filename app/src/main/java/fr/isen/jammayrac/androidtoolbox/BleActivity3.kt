@@ -1,17 +1,14 @@
 package fr.isen.jammayrac.androidtoolbox
 
+import android.bluetooth.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothGatt
-import android.bluetooth.BluetoothGattCallback
-import android.bluetooth.BluetoothProfile
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.jammayrac.androidtoolbox.fr.isen.jammayrac.androidtoolbox.BleService
 import fr.isen.jammayrac.androidtoolbox.fr.isen.jammayrac.androidtoolbox.BleServiceAdapter
 import kotlinx.android.synthetic.main.activity_ble3.*
-import kotlinx.android.synthetic.main.ble_recycler_again.*
+
 
 class BleActivity3 : AppCompatActivity() {
 
@@ -26,6 +23,7 @@ class BleActivity3 : AppCompatActivity() {
         setContentView(R.layout.activity_ble3)
 
         val device : BluetoothDevice = intent.getParcelableExtra("ble_device")
+        deviceName.text = device.name
         bluetoothGatt = device.connectGatt(this, true, gattCallback)
 
     }
@@ -40,16 +38,16 @@ class BleActivity3 : AppCompatActivity() {
             when (newState){
                 BluetoothProfile.STATE_CONNECTED -> {
                     runOnUiThread {
-                        textUUID.text = STATE_CONNECTED
+                        connectionState.text = STATE_CONNECTED
                     }
                     bluetoothGatt?.discoverServices()
                     Log.i(TAG, "Attempting to start service discovery :" +bluetoothGatt?.discoverServices())
                 }
                 BluetoothProfile.STATE_DISCONNECTED -> {
                     runOnUiThread {
-                        textUUID.text = STATE_DISCONNECTED
+                        connectionState.text = STATE_DISCONNECTED
                     }
-                    bluetoothGatt?.discoverServices()
+                   // bluetoothGatt?.discoverServices()
                     Log.i(TAG, "deconnecté")
                 }
             }
@@ -64,16 +62,64 @@ class BleActivity3 : AppCompatActivity() {
                             it.characteristics
                         )
                     }?.toMutableList() ?: arrayListOf()
-                )
+                ,this@BleActivity3, gatt)
                 itemView.layoutManager = LinearLayoutManager(this@BleActivity3)
             }
         }
+
+
+    override fun onCharacteristicRead(
+        gatt: BluetoothGatt?,
+        characteristic: BluetoothGattCharacteristic,
+        status: Int
+    ) {
+        val value = characteristic.getStringValue(0)
+        Log.e(
+            "TAG",
+            "onCharacteristicRead: " + value + " UUID " + characteristic.uuid.toString()
+        )
+    }
+
+    override fun onCharacteristicWrite(
+        gatt: BluetoothGatt?,
+        characteristic: BluetoothGattCharacteristic,
+        status: Int
+    ) {
+        val value = characteristic.value
+        Log.e(
+            "TAG",
+            "onCharacteristicWrite: " + value + " UUID " + characteristic.uuid.toString()
+        )
+    }
+
+    override fun onCharacteristicChanged(
+        gatt: BluetoothGatt?,
+        characteristic: BluetoothGattCharacteristic
+    ) {
+        val value = byteArrayToHexString(characteristic.value)
+        Log.e(
+            "TAG",
+            "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString()
+        )
+        adapter.notifyDataSetChanged()
+    }
+    }
+
+    private fun byteArrayToHexString(array: ByteArray): String {
+        val result = StringBuilder(array.size * 2)
+        for ( byte in array ) {
+            val toAppend = String.format("%X", byte) // hexadecimal
+            result.append(toAppend).append("-")
+        }
+        result.setLength(result.length - 1) // remove last '-'
+        return result.toString()
     }
 
     override fun onStop() {
         super.onStop()
         bluetoothGatt?.close()
     }
+
 
     companion object{
         private const val STATE_DISCONNECTED = "déconnecté"
@@ -85,5 +131,4 @@ class BleActivity3 : AppCompatActivity() {
         const val ACTION_DATA_AVAILABLE = "com.example.bluetooth.le.ACTION_DATA_AVAILABLE"
         const val EXTRA_DATA = "com.example.bluetooth.le.EXTRA_DATA"
     }
-
 }

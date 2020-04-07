@@ -151,6 +151,11 @@ class BleActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        scanLeDevice(false)
+    }
+
     companion object {
         private const val SCAN_PERIOD: Long = 60000
         private const val REQUEST_ENABLE_BT = 44
