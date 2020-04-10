@@ -16,7 +16,7 @@ class LoginDataSource {
         } catch (e: Throwable) {
             return Result.Error(IOException("Error logging in", e))
         }
-        
+
     }
 
     fun logout() {

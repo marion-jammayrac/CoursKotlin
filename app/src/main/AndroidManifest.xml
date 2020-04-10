@@ -24,9 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BleActivity3"></activity>
-        <activity android:name=".BleActivity2" />
         <activity android:name=".BleActivity" />
-        <activity android:name=".WebService2" />
         <activity android:name=".WebServiceActivity" />
         <activity android:name=".PermissionActivity" />
         <activity android:name=".SauvegardeActivity" />
@@ -34,7 +32,6 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
