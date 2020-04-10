@@ -31,11 +31,9 @@
     <string name="TexteSauvegarde1">Sauvegarde</string>
     <string name="SentButton">Envoyer</string>
     <string name="ReadText">READ</string>
-    <string name="SaisieDate">../../..</string>
     <string name="DateSaisie">../../..</string>
     <string name="TitreTexte">Acces Aux Informations Android</string>
     <string name="ContactTexte" />
-    <string name="ContactText">Contacts de Mario Jammayrac</string>
     <string name="ContactsText">Contact de MArio JAMMAYRAC</string>
     <string name="image">Image</string>
     <string name="titre_informations">Informations</string>
@@ -50,12 +48,12 @@
     <string name="bluetooth_button">bluetooth_button</string>
     <string name="lancer_le_scan_ble">Lancer le scan BLE</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="telephone_non_compatible_avec_le_ble">TELEPHONE NON COMPATIBLE AVEC LE BLE</string>
+    <string name="telephone_non_compatible_avec_le_ble">Incompatilibité ble</string>
     <string name="red">red</string>
     <string name="textview">TextView</string>
     <string name="example">example</string>
-    <string name="_lecture" />
-    <string name="ecrire" />
-    <string name="notifier" />
-    <string name="entrez_une_valeur" />
+    <string name="_lecture">lire</string>
+    <string name="ecrire">ecrire</string>
+    <string name="notifier">notifier</string>
+    <string name="entrez_une_valeur">Saisissez une valeur</string>
 </resources>

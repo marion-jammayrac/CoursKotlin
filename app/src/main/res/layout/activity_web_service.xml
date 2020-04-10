@@ -27,6 +27,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/textWebServ"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#1313FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toStartOf="parent"

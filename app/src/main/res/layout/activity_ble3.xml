@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".BleActivity3">
 
     <View
         android:id="@+id/dividerBle2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="15dp"
-        android:background="#FF0000"
-        android:backgroundTint="#FF0000"
+        android:layout_marginTop="9dp"
+        android:background="#1313FF"
+        android:backgroundTint="#1313FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +23,7 @@
         android:id="@+id/itemView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dividerBle2">
@@ -33,10 +35,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:background="#FFFFFF"
         android:text="TextView"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

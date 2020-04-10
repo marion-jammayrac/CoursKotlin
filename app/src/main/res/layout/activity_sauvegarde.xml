@@ -14,7 +14,7 @@
         android:fontFamily="sans-serif"
         android:text="@string/TexteSauvegarde1"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FF0000"
+        android:textColor="#1313FF"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/NameTexte"
+        android:textColor="#1313FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textdeSauvegarde" />
@@ -39,6 +40,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/LastNameTexte"
+        android:textColor="#1313FF"
         app:layout_constraintEnd_toEndOf="@+id/editTextName"
         app:layout_constraintStart_toStartOf="@+id/editTextName"
         app:layout_constraintTop_toBottomOf="@+id/editTextName" />
@@ -49,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/DateTexte"
+        android:textColor="#1313FF"
         app:layout_constraintEnd_toEndOf="@+id/editTextLastName"
         app:layout_constraintStart_toStartOf="@+id/editTextLastName"
         app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />

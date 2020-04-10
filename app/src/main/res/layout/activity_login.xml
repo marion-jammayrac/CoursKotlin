@@ -13,6 +13,8 @@
         android:layout_marginBottom="48dp"
         android:text="@string/ConnexionTexte"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#1313FF"
+        android:textColorLink="#1313FF"
         android:textSize="27sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,6 +51,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:textColorLink="#1313FF"
         app:layout_constraintStart_toStartOf="@+id/editIdentifiant"
         app:layout_constraintTop_toBottomOf="@+id/editIdentifiant" />
 
@@ -67,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/MotDePasseTexte"
+        android:textColor="#1313FF"
         app:layout_constraintBottom_toTopOf="@+id/editMotDePasse"
         app:layout_constraintStart_toStartOf="@+id/editMotDePasse" />
 

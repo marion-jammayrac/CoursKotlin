@@ -120,8 +120,6 @@ class PermissionActivity : AppCompatActivity() {
     }
 
     private fun loadContacts() {
-        var builder = StringBuilder()
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(
                 Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS),

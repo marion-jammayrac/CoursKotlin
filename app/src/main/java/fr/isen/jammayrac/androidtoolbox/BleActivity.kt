@@ -62,7 +62,7 @@ class BleActivity : AppCompatActivity() {
                 }
                 else -> {
                     //device is not compatible with your device
-                    val enableBTIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                   // val enableBTIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
 
                     bleTextFailed.visibility = View.VISIBLE
                 }

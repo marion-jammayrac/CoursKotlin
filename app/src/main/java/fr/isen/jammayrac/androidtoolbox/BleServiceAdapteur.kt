@@ -73,10 +73,10 @@ class BleServiceAdapter(private val serviceList : MutableList<BleService>, var c
     }
 
     class CharacteristicViewHolder(itemView: View) : ChildViewHolder(itemView) {
-        val characteristicUUID: TextView = itemView.characteristicUUID
-        val characteristicName: TextView = itemView.characteristicName
-        val properties: TextView = itemView.properties
-        val valueBle: TextView = itemView.characteristicValue
+        val characteristicUUID: TextView = itemView.charUUID
+        val characteristicName: TextView = itemView.charName
+        val properties: TextView = itemView.proprietes
+        val valueBle: TextView = itemView.charValue
         val buttonRead: TextView = itemView.readButton
         val buttonWrite: TextView = itemView.writeButton
         val buttonNotify: TextView = itemView.notifyButton
@@ -85,7 +85,7 @@ class BleServiceAdapter(private val serviceList : MutableList<BleService>, var c
     override fun onCreateGroupViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder =
         ServicesViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.ble_details, parent, false)
+                .inflate(R.layout.ble_recycler_again, parent, false)
         )
 
     override fun onCreateChildViewHolder(

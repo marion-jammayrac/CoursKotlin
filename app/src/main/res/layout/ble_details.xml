@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#08000000">
+    android:background="#0D1313FF">
 
     <TextView
-        android:id="@+id/characteristicUUID"
+        android:id="@+id/charUUID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/characteristicName" />
+        app:layout_constraintTop_toBottomOf="@+id/charName" />
 
     <TextView
-        android:id="@+id/properties"
+        android:id="@+id/proprietes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/characteristicUUID" />
+        app:layout_constraintTop_toBottomOf="@+id/charUUID" />
 
     <TextView
-        android:id="@+id/characteristicName"
+        android:id="@+id/charName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -38,14 +38,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/characteristicValue"
+        android:id="@+id/charValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/properties" />
+        app:layout_constraintTop_toBottomOf="@+id/proprietes" />
 
     <TextView
         android:id="@+id/readButton"
@@ -60,12 +60,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/readButton2"
+        android:id="@+id/lectureButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/_lecture"
-        android:textColor="#32FF0000"
+        android:textColor="#1313FF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/writeButton"
@@ -83,10 +83,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/characteristicValue" />
+        app:layout_constraintTop_toBottomOf="@+id/charValue" />
 
     <TextView
-        android:id="@+id/writeButton2"
+        android:id="@+id/ecritureButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/characteristicValue" />
+        app:layout_constraintTop_toBottomOf="@+id/charValue" />
 
     <TextView
         android:id="@+id/notifyButton"
@@ -112,12 +112,12 @@
         app:layout_constraintStart_toEndOf="@+id/writeButton" />
 
     <TextView
-        android:id="@+id/notifyButton2"
+        android:id="@+id/notifButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/notifier"
-        android:textColor="#32FF0000"
+        android:textColor="#1313FF"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
