@@ -108,7 +108,6 @@ class PermissionActivity : AppCompatActivity() {
             }
         }
     }
-
     //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
@@ -124,7 +123,6 @@ class PermissionActivity : AppCompatActivity() {
                 Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS),
                 1)
-            //callback onRequestPermissionsResult
         } else {
             getContacts()
             contactRecycler.adapter = ContactAdapteur(contact.sorted())

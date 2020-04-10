@@ -42,7 +42,6 @@ class BleActivity : AppCompatActivity() {
         searchButton.setOnClickListener {
             when {
                 isBLEEnabled -> {
-                    //init scan
                     if (textView12.text == "Lancer le scan BLE") {
                         searchButton.setImageResource(android.R.drawable.ic_media_pause)
                         textView12.text = "Scan en cours ..."
@@ -61,9 +60,6 @@ class BleActivity : AppCompatActivity() {
                     startActivityForResult(enableBTIntent, REQUEST_ENABLE_BT)
                 }
                 else -> {
-                    //device is not compatible with your device
-                   // val enableBTIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-
                     bleTextFailed.visibility = View.VISIBLE
                 }
             }
@@ -71,8 +67,6 @@ class BleActivity : AppCompatActivity() {
         deviceListRV.adapter = BleActivity2(devices, ::onDeviceClicked)
         deviceListRV.layoutManager = LinearLayoutManager(this)
     }
-
-
 
     private fun initScan() {
         progressBar.visibility = View.VISIBLE
@@ -119,9 +113,7 @@ class BleActivity : AppCompatActivity() {
         )
         deviceListRV.adapter = adapter
         deviceListRV.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
-
         handler = Handler()
-
         scanLeDevice(true)
         deviceListRV.setOnClickListener {
             scanLeDevice(!mScanning)
@@ -131,7 +123,6 @@ class BleActivity : AppCompatActivity() {
     private fun onDeviceClicked(device: BluetoothDevice) {
         val intent = Intent(this, BleActivity3::class.java)
         intent.putExtra("ble_device", device)
-        //bluetoothGatt = device.connectGatt(this, false, gattCallback)
         startActivity(intent)
     }
 

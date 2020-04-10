@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_ble3.*
 
 class BleActivity3 : AppCompatActivity() {
 
-    //private var connectionState = BleActivity3.STATE_DISCONNECTED
     private var bluetoothGatt: BluetoothGatt? = null
     private lateinit var adapter: BleServiceAdapter
     private var TAG:String = "services"
@@ -21,7 +20,6 @@ class BleActivity3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ble3)
-
         val device : BluetoothDevice = intent.getParcelableExtra("ble_device")
         deviceName.text = device.name
         bluetoothGatt = device.connectGatt(this, true, gattCallback)
@@ -29,66 +27,43 @@ class BleActivity3 : AppCompatActivity() {
     }
 
     private val gattCallback = object : BluetoothGattCallback(){
-        override fun onConnectionStateChange(
-            gatt : BluetoothGatt,
-            status: Int,
-            newState: Int
-        ){
+        override fun onConnectionStateChange(gatt : BluetoothGatt, status: Int, newState: Int)
+        {
             when (newState){
                 BluetoothProfile.STATE_CONNECTED -> {
                     runOnUiThread {
                         connectionState.text = STATE_CONNECTED
                     }
                     bluetoothGatt?.discoverServices()
-                    Log.i(TAG, "Attempting to start service discovery :" +bluetoothGatt?.discoverServices())
+                    Log.i(TAG, "Attempting to start discovery :" +bluetoothGatt?.discoverServices())
                 }
                 BluetoothProfile.STATE_DISCONNECTED -> {
                     runOnUiThread {
                         connectionState.text = STATE_DISCONNECTED
                     }
-                   // bluetoothGatt?.discoverServices()
-                    Log.i(TAG, "deconnecté")
                 }
             }
         }
         override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
             super.onServicesDiscovered(gatt, status)
             runOnUiThread {
-                itemView.adapter = BleServiceAdapter(
-                    gatt?.services?.map {
-                        BleService(
-                            it.uuid.toString(),
-                            it.characteristics
-                        )
-                    }?.toMutableList() ?: arrayListOf()
-                ,this@BleActivity3, gatt)
+                itemView.adapter = BleServiceAdapter(gatt?.services?.map {
+                        BleService(it.uuid.toString(), it.characteristics)
+                    }?.toMutableList() ?: arrayListOf(),this@BleActivity3, gatt)
                 itemView.layoutManager = LinearLayoutManager(this@BleActivity3)
             }
         }
 
-
-    override fun onCharacteristicRead(
-        gatt: BluetoothGatt?,
-        characteristic: BluetoothGattCharacteristic,
-        status: Int
-    ) {
+    override fun onCharacteristicRead(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic, status: Int)
+    {
         val value = characteristic.getStringValue(0)
-        Log.e(
-            "TAG",
-            "onCharacteristicRead: " + value + " UUID " + characteristic.uuid.toString()
-        )
+        Log.e("TAG", "onCharacteristicRead: " + value + " UUID " + characteristic.uuid.toString())
     }
 
-    override fun onCharacteristicWrite(
-        gatt: BluetoothGatt?,
-        characteristic: BluetoothGattCharacteristic,
-        status: Int
-    ) {
+    override fun onCharacteristicWrite(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic, status: Int)
+    {
         val value = characteristic.value
-        Log.e(
-            "TAG",
-            "onCharacteristicWrite: " + value + " UUID " + characteristic.uuid.toString()
-        )
+        Log.e("TAG", "onCharacteristicWrite: " + value + " UUID " + characteristic.uuid.toString())
     }
 
     override fun onCharacteristicChanged(
@@ -96,10 +71,7 @@ class BleActivity3 : AppCompatActivity() {
         characteristic: BluetoothGattCharacteristic
     ) {
         val value = byteArrayToHexString(characteristic.value)
-        Log.e(
-            "TAG",
-            "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString()
-        )
+        Log.e("TAG", "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString())
         adapter.notifyDataSetChanged()
     }
     }
@@ -107,19 +79,12 @@ class BleActivity3 : AppCompatActivity() {
     private fun byteArrayToHexString(array: ByteArray): String {
         val result = StringBuilder(array.size * 2)
         for ( byte in array ) {
-            val toAppend = String.format("%X", byte) // hexadecimal
+            val toAppend = String.format("%X", byte)
             result.append(toAppend).append("-")
         }
-        result.setLength(result.length - 1) // remove last '-'
+        result.setLength(result.length - 1)
         return result.toString()
     }
-
-    override fun onStop() {
-        super.onStop()
-        bluetoothGatt?.close()
-    }
-
-
     companion object{
         private const val STATE_DISCONNECTED = "déconnecté"
         private const val STATE_CONNECTING = 1
@@ -130,4 +95,10 @@ class BleActivity3 : AppCompatActivity() {
         const val ACTION_DATA_AVAILABLE = "com.example.bluetooth.le.ACTION_DATA_AVAILABLE"
         const val EXTRA_DATA = "com.example.bluetooth.le.EXTRA_DATA"
     }
+
+    override fun onStop() {
+        super.onStop()
+        bluetoothGatt?.close()
+    }
+
 }
